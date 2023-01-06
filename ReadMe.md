@@ -1,9 +1,22 @@
 # Documentation du pojet Runnig
 
-``` Projet Architecture logiciel ```
+> Projet Architecture logiciel
 
 ## API
 
+### UseFull Comand 
+
+<hr>
+
+**Remove**  ``` dotnet ef migrations Remove --project PJName  ```
+
+**Init**  ``` dotnet ef migrations add Init --project PJName ```
+
+**Update**  ``` dotnet ef update --project PJName  ```
+
+<hr>
+
+### Table
 
 | User   |         |                        |
 |--------|---------|------------------------|
