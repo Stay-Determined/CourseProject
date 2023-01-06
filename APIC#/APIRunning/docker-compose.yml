@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  apirunning:
+    image: ${DOCKER_REGISTRY-}apirunning
+    build:
+      context: .
+      dockerfile: APIRunning/Dockerfile
