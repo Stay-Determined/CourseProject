@@ -11,10 +11,26 @@ const Routes = ({navigation}) => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Connexion">
-        <Stack.Screen name="Connexion" component={Connexion} />
-        <Stack.Screen name="MainPage" component={MainPage} />
-        <Stack.Screen name="Carte" component={Carte} />
-        <Stack.Screen name="Deconnexion" component={Deconnexion} />
+        <Stack.Screen
+          name="Connexion"
+          component={Connexion}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="MainPage"
+          component={MainPage}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Carte"
+          component={Carte}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Deconnexion"
+          component={Deconnexion}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

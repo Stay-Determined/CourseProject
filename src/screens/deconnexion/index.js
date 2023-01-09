@@ -1,17 +1,23 @@
 import {React} from 'react';
-import {View, Button} from 'react-native';
+import {SafeAreaView, Button} from 'react-native';
 import styled from 'styled-components';
 
 const Deconnexion = ({navigation}) => {
   return (
-    <View>
+    <Block>
       <Title>Déconnectez-vous de votre compte</Title>
-      <BtnDeco>
+      <BtnDeco onPress={() => navigation.navigate('Connexion')}>
         <Txt>Déconnexion</Txt>
       </BtnDeco>
-    </View>
+    </Block>
   );
 };
+
+const Block = styled.SafeAreaView`
+  flex: 1;
+  justify-content: center;
+  display: flex;
+`;
 
 const Title = styled.Text`
   font-size: 25;

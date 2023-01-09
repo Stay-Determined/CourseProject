@@ -1,10 +1,10 @@
 import {React} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, SafeAreaView, TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
 
 const MainPage = ({navigation}) => {
   return (
-    <View>
+    <Block>
       <Title>Liste des courses</Title>
       <BtnCourse onPress={() => navigation.navigate('Carte')}>
         <Txt>Commencer la course 1</Txt>
@@ -21,9 +21,15 @@ const MainPage = ({navigation}) => {
       <BtnCourse onPress={() => navigation.navigate('Carte')}>
         <Txt>Commencer la course 5</Txt>
       </BtnCourse>
-    </View>
+    </Block>
   );
 };
+
+const Block = styled.SafeAreaView`
+  flex: 1;
+  justify-content: center;
+  display: flex;
+`;
 
 const Title = styled.Text`
   font-size: 25;

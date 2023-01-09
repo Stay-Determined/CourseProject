@@ -1,17 +1,23 @@
 import {React} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, SafeAreaView, TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
 
 const Carte = ({navigation}) => {
   return (
-    <View>
+    <Block>
       <Title>Carte de la course</Title>
       <BtnCarte onPress={() => navigation.navigate('Deconnexion')}>
         <Txt>Vers déconnexion</Txt>
       </BtnCarte>
-    </View>
+    </Block>
   );
 };
+
+const Block = styled.SafeAreaView`
+  flex: 1;
+  justify-content: center;
+  display: flex;
+`;
 
 const Title = styled.Text`
   font-size: 25;

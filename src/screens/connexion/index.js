@@ -1,23 +1,44 @@
-import {React} from 'react';
-import {Text, View, Button, TextInput, TouchableOpacity} from 'react-native';
+import {React, useState} from 'react';
+import {
+  Text,
+  SafeAreaView,
+  Button,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import styled from 'styled-components';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import BackIcon from 'react-native-vector-icons/Feather';
+import Input from '../../components/inputs';
 
 const Connexion = ({navigation}) => {
   return (
-    <View>
-      <Title>Connectez-vous</Title>
-      <Data value="Identifiant" />
-      <Data value="Mot de passe" />
+    <Block>
+      <Title>Daily Runs</Title>
+      <Input name="at-sign" label="Mail" placeholder="Mail" />
+      <Input name="key" label="Mot de passe" placeholder="Mot de passe" />
+
       <BtnNext onPress={() => navigation.navigate('MainPage')}>
-        <Txt>Connexion</Txt>
+        <Txt>
+          Connexion
+          <BackIcon name="chevron-right" />
+        </Txt>
       </BtnNext>
-    </View>
+    </Block>
   );
 };
+
+const Block = styled.SafeAreaView`
+  flex: 1;
+  justify-content: center;
+  display: flex;
+`;
 
 const Title = styled.Text`
   font-size: 25;
   text-align: center;
+  margin-bottom: 20px;
 `;
 const Txt = styled.Text`
   font-size: 15;
@@ -36,9 +57,8 @@ const Data = styled.TextInput`
 `;
 
 const BtnNext = styled.TouchableOpacity`
-  width: 25%;
+  width: 30%;
   padding: 10px 0px;
-  border-radius: 20px;
   background-color: grey;
   margin-left: auto;
   margin-right: auto;
