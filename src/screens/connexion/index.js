@@ -1,51 +1,108 @@
-import {React} from 'react';
-import {Text, View, Button, TextInput, TouchableOpacity} from 'react-native';
-import styled from 'styled-components';
+import {useRef, useState, useEffect, useContext} from 'react';
+import AuthContext from './AuthProvider';
+import {AuthProvider} from './AuthProvider';
+// import './styles.css';
+import axios from './axios';
+const LOGIN_URL = '/auth';
 
-const Connexion = ({navigation}) => {
+const Connexion = () => {
+  const {setAuth} = useContext(AuthContext);
+  const userRef = useRef();
+  const errRef = useRef();
+
+  const [user, setUser] = useState('');
+  const [pwd, setPwd] = useState('');
+  const [errMsg, setErrMsg] = useState('');
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    userRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    setErrMsg('');
+  }, [user, pwd]);
+
+  // FONCTION POUR SE CONNECTER
+  const handleSubmit = async e => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({user, pwd}),
+        {
+          headers: {'Content-Type': 'application/json'},
+          withCredentials: true,
+        },
+      );
+      console.log(JSON.stringify(response?.data));
+      //console.log(JSON.stringify(response));
+      const accessToken = response?.data?.accessToken;
+      const roles = response?.data?.roles;
+      setAuth({user, pwd, roles, accessToken});
+      setUser('');
+      setPwd('');
+      setSuccess(true);
+    } catch (err) {
+      if (!err?.response) {
+        setErrMsg('Pas de réponse du serveur');
+      } else if (err.response?.status === 400) {
+        setErrMsg("Erreur d'identitifant ou mot de passe");
+      } else if (err.response?.status === 401) {
+        setErrMsg('Pas autorisé');
+      } else {
+        setErrMsg('Connection ratée');
+      }
+      errRef.current.focus();
+    }
+  };
+
   return (
-    <View>
-      <Title>Connectez-vous</Title>
-      <Data value="Identifiant" />
-      <Data value="Mot de passe" />
-      <BtnNext onPress={() => navigation.navigate('MainPage')}>
-        <Txt>Connexion</Txt>
-      </BtnNext>
-    </View>
+    <>
+      {success ? (
+        <section>
+          <h1>Tu es connecté !</h1>
+          <br />
+          <p>
+            <a href="#">Aller à l'accueil</a>
+          </p>
+        </section>
+      ) : (
+        <section>
+          <p
+            ref={errRef}
+            className={errMsg ? 'errmsg' : 'offscreen'}
+            aria-live="assertive">
+            {errMsg}
+          </p>
+          <h1>Connectez-vous</h1>
+
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="username">Identifiant:</label>
+            <input
+              type="text"
+              id="username"
+              ref={userRef}
+              autoComplete="off"
+              onChange={e => setUser(e.target.value)}
+              value={user}
+              required
+            />
+
+            <label htmlFor="password">Mot de passe:</label>
+            <input
+              type="password"
+              id="password"
+              onChange={e => setPwd(e.target.value)}
+              value={pwd}
+              required
+            />
+            <button>Sign In</button>
+          </form>
+        </section>
+      )}
+    </>
   );
 };
-
-const Title = styled.Text`
-  font-size: 25;
-  text-align: center;
-`;
-const Txt = styled.Text`
-  font-size: 15;
-  color: white;
-`;
-const Data = styled.TextInput`
-  width: 50%;
-  border-radius: 10px;
-  text-align: center;
-  background-color: black;
-  color: white;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 15px;
-  margin-bottom: 15px;
-`;
-
-const BtnNext = styled.TouchableOpacity`
-  width: 25%;
-  padding: 10px 0px;
-  border-radius: 20px;
-  background-color: grey;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  align-items: center;
-  align-self: center;
-`;
 
 export default Connexion;
