@@ -1,4 +1,5 @@
 import {React} from 'react';
+import MapView from 'react-native-maps'
 import {Text, View, TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
 
@@ -9,6 +10,7 @@ const Carte = ({navigation}) => {
       <BtnCarte onPress={() => navigation.navigate('Deconnexion')}>
         <Txt>Vers déconnexion</Txt>
       </BtnCarte>
+      <MapView style={styles.map} />
     </View>
   );
 };
