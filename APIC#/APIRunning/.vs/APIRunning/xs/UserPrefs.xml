@@ -1,0 +1,35 @@
+﻿<Properties StartupConfiguration="{3D6E005F-9AE4-4D9E-AB10-C443169FACDD}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="APIRunning/Models/User.cs">
+    <Files>
+      <File FileName="APIRunning/Program.cs" />
+      <File FileName="APIRunning/Controllers/UsersController.cs" Line="1" Column="2" />
+      <File FileName="APIRunning/Data/ArchiDB.cs" Line="1" Column="1" />
+      <File FileName="APIRunning/Models/User.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="APIRunning" expanded="True">
+            <Node name="APIRunning" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Migrations" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="User.cs" selected="True" />
+              </Node>
+              <Node name="Properties" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.APIRunning PreferredExecutionTarget="/Applications/Opera GX.app" />
+  <MonoDevelop.Ide.ItemProperties.docker-compose PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
