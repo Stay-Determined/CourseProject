@@ -5,6 +5,7 @@ import MainPage from '../screens/mainPage';
 import Connexion from '../screens/connexion';
 import Deconnexion from '../screens/deconnexion';
 import Carte from '../screens/carte';
+import QrGen from '../screens/questions';
 
 const Stack = createNativeStackNavigator();
 const Routes = ({navigation}) => {
@@ -29,6 +30,12 @@ const Routes = ({navigation}) => {
         <Stack.Screen
           name="Deconnexion"
           component={Deconnexion}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="QrGen"
+          component={QrGen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

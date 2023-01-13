@@ -7,7 +7,6 @@ const MainPage = ({navigation}) => {
   return (
     <Block>
       <Title>Liste des courses</Title>
-
       <BtnCourse1 onPress={() => navigation.navigate('Carte')}>
         <Txt>
           Commencer la course 1

@@ -6,6 +6,9 @@ const Carte = ({navigation}) => {
   return (
     <Block>
       <Title>Carte de la course</Title>
+      <BtnCarte onPress={() => navigation.navigate('QrGen')}>
+        <Txt>Vers la génération de qr code</Txt>
+      </BtnCarte>
       <BtnCarte onPress={() => navigation.navigate('Deconnexion')}>
         <Txt>Vers déconnexion</Txt>
       </BtnCarte>
