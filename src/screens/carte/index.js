@@ -31,8 +31,7 @@ const Txt = styled.Text`
 const BtnCarte = styled.TouchableOpacity`
   width: 35%;
   padding: 10px 0px;
-  border-radius: 20px;
-  background-color: grey;
+  background-color: black;
   margin-left: auto;
   margin-right: auto;
   margin-top: 15px;

@@ -59,7 +59,7 @@ const Data = styled.TextInput`
 const BtnNext = styled.TouchableOpacity`
   width: 30%;
   padding: 10px 0px;
-  background-color: grey;
+  background-color: black;
   margin-left: auto;
   margin-right: auto;
   margin-top: 15px;
