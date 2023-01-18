@@ -1,108 +1,51 @@
-import {useRef, useState, useEffect, useContext} from 'react';
-import AuthContext from './AuthProvider';
-import {AuthProvider} from './AuthProvider';
-// import './styles.css';
-import axios from './axios';
-const LOGIN_URL = '/auth';
-
-const Connexion = () => {
-  const {setAuth} = useContext(AuthContext);
-  const userRef = useRef();
-  const errRef = useRef();
-
-  const [user, setUser] = useState('');
-  const [pwd, setPwd] = useState('');
-  const [errMsg, setErrMsg] = useState('');
-  const [success, setSuccess] = useState(false);
-
-  useEffect(() => {
-    userRef.current.focus();
-  }, []);
-
-  useEffect(() => {
-    setErrMsg('');
-  }, [user, pwd]);
-
-  // FONCTION POUR SE CONNECTER
-  const handleSubmit = async e => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        LOGIN_URL,
-        JSON.stringify({user, pwd}),
-        {
-          headers: {'Content-Type': 'application/json'},
-          withCredentials: true,
-        },
-      );
-      console.log(JSON.stringify(response?.data));
-      //console.log(JSON.stringify(response));
-      const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
-      setAuth({user, pwd, roles, accessToken});
-      setUser('');
-      setPwd('');
-      setSuccess(true);
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg('Pas de réponse du serveur');
-      } else if (err.response?.status === 400) {
-        setErrMsg("Erreur d'identitifant ou mot de passe");
-      } else if (err.response?.status === 401) {
-        setErrMsg('Pas autorisé');
-      } else {
-        setErrMsg('Connection ratée');
-      }
-      errRef.current.focus();
-    }
-  };
+import React, {useContext, useEffect, useState} from 'react';
+import {View, Button, TextInput, StyleSheet, Text} from 'react-native';
+import styled from 'styled-components';
+import axios from 'axios';
+const Connexion = ({navigation}) => {
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
 
   return (
-    <>
-      {success ? (
-        <section>
-          <h1>Tu es connecté !</h1>
-          <br />
-          <p>
-            <a href="#">Aller à l'accueil</a>
-          </p>
-        </section>
-      ) : (
-        <section>
-          <p
-            ref={errRef}
-            className={errMsg ? 'errmsg' : 'offscreen'}
-            aria-live="assertive">
-            {errMsg}
-          </p>
-          <h1>Connectez-vous</h1>
+    <View style={styles.container}>
+      <View style={styles.wrapper}>
+        <TextInput
+          style={styles.input}
+          value={email}
+          onChangeText={text => setEmail(text)}
+          placeholder="Email"
+        />
 
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="username">Identifiant:</label>
-            <input
-              type="text"
-              id="username"
-              ref={userRef}
-              autoComplete="off"
-              onChange={e => setUser(e.target.value)}
-              value={user}
-              required
-            />
+        <TextInput
+          style={styles.input}
+          value={password}
+          onChangeText={text => setPassword(text)}
+          placeholder="Mot de passe"
+          secureTextEntry
+        />
 
-            <label htmlFor="password">Mot de passe:</label>
-            <input
-              type="password"
-              id="password"
-              onChange={e => setPwd(e.target.value)}
-              value={pwd}
-              required
-            />
-            <button>Sign In</button>
-          </form>
-        </section>
-      )}
-    </>
+        <Button title="Se connecter" onPress={() => navigation.navigate('#')} />
+      </View>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  wrapper: {
+    width: '80%',
+  },
+  input: {
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: '#bbb',
+    borderRadius: 5,
+    paddingHorizontal: 14,
+  },
+});
 
 export default Connexion;

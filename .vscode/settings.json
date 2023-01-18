@@ -1,19 +1,10 @@
 {
-    "editor.renderWhitespace": "boundary",
-    "editor.rulers": [80],
-    "javascript.validate.enable": false,
-    "editor.tabSize": 2,
-    "git.ignoreLimitWarning": true,
-    "prettier/prettier": 
-    [ "error",
-      {
-        "endOfLine": "auto"}
-    ],
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-    },
-    "java.configuration.updateBuildConfiguration": "interactive",
-    "java.compile.nullAnalysis.mode": "automatic"
+  "editor.renderWhitespace": "boundary",
+  "editor.rulers": [80],
+  "javascript.validate.enable": false,
+  "editor.tabSize": 2,
+  "git.ignoreLimitWarning": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
   }
-
-  
+}
