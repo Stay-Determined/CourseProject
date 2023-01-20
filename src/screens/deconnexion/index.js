@@ -1,17 +1,23 @@
 import {React} from 'react';
-import {View, Button} from 'react-native';
+import {SafeAreaView, Button} from 'react-native';
 import styled from 'styled-components';
 
 const Deconnexion = ({navigation}) => {
   return (
-    <View>
+    <Block>
       <Title>Déconnectez-vous de votre compte</Title>
-      <BtnDeco>
+      <BtnDeco onPress={() => navigation.navigate('Connexion')}>
         <Txt>Déconnexion</Txt>
       </BtnDeco>
-    </View>
+    </Block>
   );
 };
+
+const Block = styled.SafeAreaView`
+  flex: 1;
+  justify-content: center;
+  display: flex;
+`;
 
 const Title = styled.Text`
   font-size: 25;
@@ -25,8 +31,7 @@ const Txt = styled.Text`
 const BtnDeco = styled.TouchableOpacity`
   width: 30%;
   padding: 10px 0px;
-  border-radius: 20px;
-  background-color: grey;
+  background-color: black;
   margin-left: auto;
   margin-right: auto;
   margin-top: 15px;
