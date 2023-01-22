@@ -1,17 +1,57 @@
-import {React} from 'react';
-import {Text, SafeAreaView, TouchableOpacity} from 'react-native';
+import {React, useRef, useState} from 'react';
+import {
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  Button,
+  Modal,
+  View,
+  Alert,
+} from 'react-native';
 import styled from 'styled-components';
+import {Timer, Countdown} from 'react-native-element-timer';
 
 const Carte = ({navigation}) => {
+  const timerRef = useRef(null);
+  const countdownRef = useRef(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [btnVisible, setBtnVisible] = useState(false);
+
   return (
     <Block>
       <Title>Carte de la course</Title>
-      <BtnCarte onPress={() => navigation.navigate('QrGen')}>
-        <Txt>Vers la génération de qr code</Txt>
+      <Txt>TIMER</Txt>
+      <Timer
+        ref={timerRef}
+        onTimes={e => {}}
+        onPause={e => {}}
+        onEnd={e => {}}
+      />
+
+      <BtnCarte
+        visible={btnVisible}
+        onPress={() => {
+          timerRef.current.start();
+          setBtnVisible(!btnVisible);
+          setModalVisible(true);
+        }}>
+        <Txt>Prêt?</Txt>
       </BtnCarte>
-      <BtnCarte onPress={() => navigation.navigate('Deconnexion')}>
-        <Txt>Vers déconnexion</Txt>
-      </BtnCarte>
+
+      <Modal
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}>
+        <BtnCarte onPress={() => navigation.navigate('QrGen')}>
+          <Txt>Vers la génération de qr code</Txt>
+        </BtnCarte>
+        <BtnCarte onPress={() => navigation.navigate('Deconnexion')}>
+          <Txt>Vers déconnexion</Txt>
+        </BtnCarte>
+      </Modal>
     </Block>
   );
 };
