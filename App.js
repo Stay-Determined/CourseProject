@@ -1,8 +1,13 @@
 import React from 'react';
 import {SafeAreaView, Dimensions} from 'react-native';
 import Routes from './src/config/routes';
+import {Provider} from 'react-redux';
+import {store} from './src/config/store';
 const App = () => {
+  console.log('VAUDOU');
+
   return (
+    <Provider store={store}>
     <SafeAreaView
       style={{
         width: '100%',
@@ -10,6 +15,8 @@ const App = () => {
       }}>
       <Routes />
     </SafeAreaView>
+    </Provider>
+
   );
 };
 

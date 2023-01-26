@@ -1,39 +1,63 @@
-import {React} from 'react';
-import MapView from 'react-native-maps'
-import {Text, View, TouchableOpacity} from 'react-native';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
+
+import { StyleSheet, Text, View, Dimensions, LogBox } from 'react-native';
+
+import MapView, { Callout, Marker } from 'react-native-maps';
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import { storeLocation, getLocation } from '../../config/location';
+import { logger } from "react-native-logs";
+
+var log = logger.createLogger();
 
 const Carte = ({navigation}) => {
-  return (
-    <View>
-      <Title>Carte de la course</Title>
-      <BtnCarte onPress={() => navigation.navigate('Deconnexion')}>
-        <Txt>Vers déconnexion</Txt>
-      </BtnCarte>
-      <MapView style={styles.map} />
-    </View>
-  );
-};
+  console.log('test1');
+    const dispatch = useDispatch();
+    console.log('test2');
+    const Geoloc = useSelector(state => state.location.value);
+    console.log('test3');
+    const [pin, setPin] = useState({ latitude: 31.776685, longitude: 35.234491 });
+    console.log('test4');
+    useEffect(() => {
+      setPin({ latitude: 31.776685, longitude: 35.234491 });
+    }, [dispatch]);
+    console.log('test5');
 
-const Title = styled.Text`
-  font-size: 25;
-  text-align: center;
-`;
-const Txt = styled.Text`
-  font-size: 15;
-  color: white;
-`;
-
-const BtnCarte = styled.TouchableOpacity`
-  width: 35%;
-  padding: 10px 0px;
-  border-radius: 20px;
-  background-color: grey;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  align-items: center;
-  align-self: center;
-`;
+    return (
+      <View style={styles.container}>
+        <MapView
+          style={styles.map}
+          initialRegion={{
+            latitude: 31.776685,
+            longitude: 35.234491,
+            latitudeDelta: 0.04,
+            longitudeDelta: 0.05,          }}
+        >
+          <Marker coordinate={pin} pinColor="black">
+            <Callout>
+              <Text>I'm here</Text>
+            </Callout>
+          </Marker>
+        </MapView>
+      </View>
+    );
+  };
+  
+  console.log('Test6');
+  // Pour la réalisation de cette partie, je n'ai pas eu le temps de faire un styled components,
+  // j'ai demandé aux autres qui ont oublié de le faire malheureusement. Delphine
+  const styles = StyleSheet.create({
+    conainer: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    map: {
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
+    },
+  });
+  
+  console.log('Test7');
 export default Carte;
