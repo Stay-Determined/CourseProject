@@ -12,12 +12,22 @@
   "dependencies": {
     "@react-navigation/native": "^6.1.1",
     "@react-navigation/native-stack": "^6.9.7",
+    "deprecated-react-native-prop-types": "^4.0.0",
+    "radio-buttons-react-native": "^1.0.4",
     "react": "^18.1.0",
     "react-native": "^0.70.6",
     "react-native-animated-input": "^1.0.9",
     "react-native-background-timer": "^2.4.1",
+<<<<<<< Updated upstream
     "react-native-element-timer": "^2.1.2",
     "react-native-paper": "^5.1.2",
+=======
+    "react-native-camera": "^4.2.1",
+    "react-native-element-timer": "^2.1.2",
+    "react-native-paper": "^5.1.2",
+    "react-native-permissions": "^3.6.1",
+    "react-native-qrcode-scanner": "^1.5.5",
+>>>>>>> Stashed changes
     "react-native-qrcode-svg": "^6.1.2",
     "react-native-safe-area-context": "^4.4.1",
     "react-native-screens": "^3.18.2",

@@ -20,18 +20,28 @@ const Carte = ({navigation}) => {
   return (
     <Block>
       <Title>Carte de la course</Title>
+<<<<<<< Updated upstream
       <Txt>TIMER</Txt>
+=======
+      <Fond>
+      <Txt2>TIMER</Txt2>
+>>>>>>> Stashed changes
       <Timer
         ref={timerRef}
         onTimes={e => {}}
         onPause={e => {}}
         onEnd={e => {}}
       />
+<<<<<<< Updated upstream
 
+=======
+  </Fond>
+>>>>>>> Stashed changes
       <BtnCarte
         visible={btnVisible}
         onPress={() => {
           timerRef.current.start();
+<<<<<<< Updated upstream
           setBtnVisible(!btnVisible);
           setModalVisible(true);
         }}>
@@ -52,14 +62,35 @@ const Carte = ({navigation}) => {
           <Txt>Vers déconnexion</Txt>
         </BtnCarte>
       </Modal>
+=======
+        }}>
+        <Txt>Prêt?</Txt>
+      </BtnCarte>
+      <BtnCarte
+        visible={btnVisible}
+        onPress={() => {
+          timerRef.current.resume();
+        }}>
+        <Txt>Resume</Txt>
+      </BtnCarte>
+      
+>>>>>>> Stashed changes
     </Block>
   );
 };
 
 const Block = styled.SafeAreaView`
   flex: 1;
+<<<<<<< Updated upstream
   justify-content: center;
   display: flex;
+=======
+  text-align: center;
+  justify-content: center;
+  align-item: center;
+  display: flex;
+  
+>>>>>>> Stashed changes
 `;
 
 const Title = styled.Text`
@@ -69,6 +100,10 @@ const Title = styled.Text`
 const Txt = styled.Text`
   font-size: 15;
   color: white;
+`;
+const Txt2 = styled.Text`
+  font-size: 15;
+  color: black;
 `;
 
 const BtnCarte = styled.TouchableOpacity`
@@ -82,4 +117,13 @@ const BtnCarte = styled.TouchableOpacity`
   align-items: center;
   align-self: center;
 `;
+
+const Fond = styled.View`
+
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+align-content: center;
+`;
+
 export default Carte;

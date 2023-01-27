@@ -37,10 +37,36 @@ const MainPage = ({navigation}) => {
           <BackIcon name="arrow-right-circle" />
         </Txt>
       </BtnCourse5>
+<<<<<<< Updated upstream
+=======
+      <BtnCarte onPress={() => navigation.navigate('QrGen')}>
+          <Txt2>Génération QR code</Txt2>
+        </BtnCarte>
+        <BtnCarte onPress={() => navigation.navigate('Deconnexion')}>
+          <Txt2>Vers déconnexion</Txt2>
+        </BtnCarte>
+        <BtnCarte onPress={() => navigation.navigate('QrScan')}>
+          <Txt2>Scanner QR Code</Txt2>
+        </BtnCarte>
+        <BtnCarte onPress={() => navigation.navigate('Question')}>
+          <Txt2>Question</Txt2>
+        </BtnCarte>
+>>>>>>> Stashed changes
     </Block>
   );
 };
 
+<<<<<<< Updated upstream
+=======
+
+
+
+
+
+
+
+
+>>>>>>> Stashed changes
 const styles = StyleSheet.create({
   course1: {
     border: 'solid blue',
@@ -63,6 +89,14 @@ const Title = styled.Text`
 const Txt = styled.Text`
   font-size: 15;
   color: black;
+<<<<<<< Updated upstream
+=======
+`;
+
+const Txt2 = styled.Text`
+  font-size: 15;
+  color: white;
+>>>>>>> Stashed changes
 `;
 
 const BtnCourse1 = styled.TouchableOpacity`
@@ -127,4 +161,20 @@ const BtnCourse5 = styled.TouchableOpacity`
   border: solid 2px blue;
 `;
 
+<<<<<<< Updated upstream
+=======
+const BtnCarte = styled.TouchableOpacity`
+  width: 35%;
+  height: 40px;
+  padding: 10px 0px;
+  background-color: black;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  align-items: center;
+  align-self: center;
+`;
+
+>>>>>>> Stashed changes
 export default MainPage;
