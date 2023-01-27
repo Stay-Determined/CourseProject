@@ -17,10 +17,13 @@ const Carte = ({navigation}) => {
     console.log('test2');
     const Geoloc = useSelector(state => state.location.value);
     console.log('test3');
-    const [pin, setPin] = useState({ latitude: 31.776685, longitude: 35.234491 });
+    const [pin, setPin] = useState({ latitude: 48.866667, longitude: 2.333333 });
+    const [pinsec, setPinsec] = useState({ latitude: 48.866767, longitude: 2.334333 });
     console.log('test4');
     useEffect(() => {
-      setPin({ latitude: 31.776685, longitude: 35.234491 });
+      setPin({ latitude: 48.866667, longitude: 2.333333 });
+      setPinsec({ latitude: 48.866767, longitude: 2.334333 });
+
     }, [dispatch]);
     console.log('test5');
 
@@ -29,13 +32,19 @@ const Carte = ({navigation}) => {
         <MapView
           style={styles.map}
           initialRegion={{
-            latitude: 31.776685,
-            longitude: 35.234491,
+            latitude: 48.866667,
+            longitude: 2.333333,
             latitudeDelta: 0.04,
-            longitudeDelta: 0.05,          }}
+            longitudeDelta: 0.05,
+            }}
         >
           <Marker coordinate={pin} pinColor="black">
             <Callout>
+              <Text>I'm here</Text>
+            </Callout>
+          </Marker>
+          <Marker coordinate={pinsec} pinColor="black">
+          <Callout>
               <Text>I'm here</Text>
             </Callout>
           </Marker>
