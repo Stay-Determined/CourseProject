@@ -1,17 +1,26 @@
 import {React} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, SafeAreaView, TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
 
 const Carte = ({navigation}) => {
   return (
-    <View>
+    <Block>
       <Title>Carte de la course</Title>
+      <BtnCarte onPress={() => navigation.navigate('QrGen')}>
+        <Txt>Vers la génération de qr code</Txt>
+      </BtnCarte>
       <BtnCarte onPress={() => navigation.navigate('Deconnexion')}>
         <Txt>Vers déconnexion</Txt>
       </BtnCarte>
-    </View>
+    </Block>
   );
 };
+
+const Block = styled.SafeAreaView`
+  flex: 1;
+  justify-content: center;
+  display: flex;
+`;
 
 const Title = styled.Text`
   font-size: 25;
@@ -25,8 +34,7 @@ const Txt = styled.Text`
 const BtnCarte = styled.TouchableOpacity`
   width: 35%;
   padding: 10px 0px;
-  border-radius: 20px;
-  background-color: grey;
+  background-color: black;
   margin-left: auto;
   margin-right: auto;
   margin-top: 15px;
