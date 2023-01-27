@@ -12,27 +12,29 @@ import {
 import {BASE_URL} from './config';
 
 const Connexion = ({navigation}) => {
-  const [user, setUser] = useState('');
+  // const [user, setUser] = useState('');
+  const [email, setUsername] = React.useState('');
+  const [mdp, setPassword] = React.useState('');
 
   const submitLogin = text => {
     text.preventDefault();
-    console.log(user);
 
-    axios({
-      method: 'POST',
-      url: 'https://runningapiynov.azurewebsites.net/api/Users',
-      data: {
-        user,
-      },
-    })
-      .then(async res => {
-        console.log(res);
-        await AsyncStorage.setItem('token', res.headers['x-access-token']);
+    // VERIFICATION DANS LA CONSOLE //
+    console.log('Email inséré: ' + email);
+    console.log('Mot de passe inséré: ' + mdp);
+    // VERIFICATION DANS LA CONSOLE //
+
+    axios
+      .get(
+        `https://runningapiynov.azurewebsites.net/api/Users/login?email=${email}&mdp=${mdp}`,
+      )
+      .then(function (response) {
         navigation.navigate('MainPage');
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(function (error) {
+        alert('Mot de passe ou email érroné !');
+      })
+      .then(function () {});
   };
 
   return (
@@ -45,7 +47,9 @@ const Connexion = ({navigation}) => {
           name="email"
           id="email"
           // type="text"
-          onChangeText={text => setUser({...user, email: text})}
+          // onChangeText={text => setUser({...user, email: text})}
+          onChangeText={setUsername}
+          value={email}
         />
 
         <TextInput
@@ -55,7 +59,9 @@ const Connexion = ({navigation}) => {
           name="mdp"
           id="mdp"
           // type="password"
-          onChangeText={text => setUser({...user, mdp: text})}
+          // onChangeText={text => setUser({...user, mdp: text})}
+          onChangeText={setPassword}
+          value={mdp}
           secureTextEntry
         />
 
