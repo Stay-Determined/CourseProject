@@ -1,30 +1,65 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {View, Button, TextInput, StyleSheet, Text} from 'react-native';
-import styled from 'styled-components';
+import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
+import React, {useContext, useState} from 'react';
+import {
+  View,
+  Button,
+  TextInput,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
+import {BASE_URL} from './config';
+
 const Connexion = ({navigation}) => {
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [user, setUser] = useState('');
+
+  const submitLogin = text => {
+    text.preventDefault();
+    console.log(user);
+
+    axios({
+      method: 'POST',
+      url: 'https://runningapiynov.azurewebsites.net/api/Users',
+      data: {
+        user,
+      },
+    })
+      .then(async res => {
+        console.log(res);
+        await AsyncStorage.setItem('token', res.headers['x-access-token']);
+        navigation.navigate('MainPage');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.wrapper}>
         <TextInput
           style={styles.input}
-          value={email}
-          onChangeText={text => setEmail(text)}
           placeholder="Email"
+          // label="Email"
+          name="email"
+          id="email"
+          // type="text"
+          onChangeText={text => setUser({...user, email: text})}
         />
 
         <TextInput
           style={styles.input}
-          value={password}
-          onChangeText={text => setPassword(text)}
           placeholder="Mot de passe"
+          // label="Mot de passe"
+          name="mdp"
+          id="mdp"
+          // type="password"
+          onChangeText={text => setUser({...user, mdp: text})}
           secureTextEntry
         />
 
-        <Button title="Se connecter" onPress={() => navigation.navigate('#')} />
+        <Button title="Se connecter" onPress={e => submitLogin(e)} />
       </View>
     </View>
   );

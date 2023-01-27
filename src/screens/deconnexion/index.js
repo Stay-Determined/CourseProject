@@ -6,7 +6,7 @@ const Deconnexion = ({navigation}) => {
   return (
     <View>
       <Title>Déconnectez-vous de votre compte</Title>
-      <BtnDeco>
+      <BtnDeco onPress={() => navigation.navigate('Connexion')}>
         <Txt>Déconnexion</Txt>
       </BtnDeco>
     </View>

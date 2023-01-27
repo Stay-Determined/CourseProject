@@ -10,8 +10,13 @@ const Stack = createNativeStackNavigator();
 const Routes = ({navigation}) => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Connexion">
-        <Stack.Screen name="Connexion" component={Connexion} />
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Connexion"
+          component={Connexion}
+          options={{headerShown: false}}
+        />
+
         <Stack.Screen name="MainPage" component={MainPage} />
         <Stack.Screen name="Carte" component={Carte} />
         <Stack.Screen name="Deconnexion" component={Deconnexion} />
